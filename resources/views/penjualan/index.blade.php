@@ -1,15 +1,14 @@
 @extends('adminlte::page')
-@section('content_header')
+@section('header')
 <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0"><center>Daftar Transaksi</center></h1>
-                </div>
-               
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0">Penjualan</h1>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('content')
