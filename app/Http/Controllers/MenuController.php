@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\menu;
 use Illuminate\Http\Request;
+use Alert;
+use Session;
 
 class MenuController extends Controller
 {
@@ -38,28 +40,28 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            
+
             'nama_menu' => 'required',
             'harga' => 'required',
             'gambar_menu' =>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'deskripsi' =>'required',
         ]);
 
-        // $image = $request->file('gambar_menu');
-        // $name = $image->getClientOrigininalName();
-
-
         $menu = new Menu;
         $menu->nama_menu = $request->nama_menu;
         if ($request->hasFile('gambar_menu')) {
             $image = $request->file('gambar_menu');
             $name = rand(1000, 9999) . "" . $request->gambar_menu->getClientOriginalName();
-            $image->move('images/', $name);
+            $image->move('image/', $name);
             $menu->gambar_menu = $name;
         }
         $menu->harga = $request->harga;
         $menu->deskripsi = $request->deskripsi;
-       
+        Alert::success('Success Menambahkan Menu');
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Data saved successfully",
+        ]);
         $menu->save();
         return redirect()->route('menu.index');
 
@@ -100,28 +102,30 @@ class MenuController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $validated = $request->validate([
-            
+        $request->validate([
             'nama_menu' => 'required',
-            'gambar_menu' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
         ]);
 
-        $menu = Menu::findOrFail($id);
+        $menu = menu::findOrFail($id);
         $menu->nama_menu = $request->nama_menu;
+        // upload image / foto
         if ($request->hasFile('gambar_menu')) {
             $image = $request->file('gambar_menu');
-            $name = rand(1000, 9999) . "" . $request->gambar_menu->getClientOriginalName();
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
             $image->move('image/', $name);
             $menu->gambar_menu = $name;
         }
         $menu->harga = $request->harga;
-        $menu->harga = $request->deskripsi;
-        // $menu->stock = $request->stock;
+        $menu->deskripsi = $request->deskripsi;
+        Alert::success('Success Mengedit Menu');
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Data edited successfully",
+        ]);
         $menu->save();
         return redirect()->route('menu.index');
-
 
     }
 
@@ -134,6 +138,7 @@ class MenuController extends Controller
     public function destroy($id)
     {
         $menu = menu::findOrFail($id);
+        Alert::success('Success Menghapus Menu');
         $menu->delete();
         return redirect()->route('menu.index');
 

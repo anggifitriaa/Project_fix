@@ -41,7 +41,7 @@
                                 <option value="Pepes Peda">Pepes Peda</option>
                                 <option value="Pepes Tahu">Pepes tahu</option>
                                 <select>
-                                
+
                         <div class="form-group">
                             <label for="">Harga</label>
                             <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror">
@@ -61,8 +61,8 @@
                                 @enderror
                             </div>
                         <div class="form-group">
-                            <button type="reset" class="btn btn-outline-warning">Reset</button>
-                            <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                            <button type="reset" class="btn btn-outline btn-sm btn btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-outline btn-sm btn btn-primary">Simpan</button>
                         </div>
                     </form>
                 </div>

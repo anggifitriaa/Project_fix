@@ -18,8 +18,8 @@ class CreateMenusTable extends Migration
 
             $table->string('nama_menu');
             $table->string('gambar_menu')->nullable();
-            $table->string('harga');
-            $table->longtext('deskripsi');
+            $table->integer('harga');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

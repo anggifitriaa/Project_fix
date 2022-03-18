@@ -6,6 +6,8 @@ use App\Models\menu;
 use App\Models\pembeli;
 use App\Models\transaksi;
 use Illuminate\Http\Request;
+use Alert;
+use session;
 
 class TransaksiController extends Controller
 {
@@ -50,8 +52,8 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
 //         $request->validate([
-//     'nama' => 'required', 
-//     'id_pembeli' => 'required', 
+//     'nama' => 'required',
+//     'id_pembeli' => 'required',
 //     'menu_id' => 'required',
 // ]);
 $transaksi = new Transaksi;
@@ -64,6 +66,14 @@ $transaksi->uang = $request->uang;
 $price = Menu::findOrFail($request->menu_id);
 $transaksi->total = $request->harga * $transaksi->jumlah;
 $transaksi->kembalian = $transaksi->uang - $transaksi->total;
+Alert::success('Success Menambahkan Transaksi');
+if ($transaksi->uang < $transaksi->total){
+    Alert::error('Maaf, Uang anda kurang');
+    return redirect()->back();
+} else{
+    Alert::success('Berhasil');
+    $transaksi->save();
+}
 $transaksi->save();
 return redirect()->route('transaksi.index');
 
@@ -90,7 +100,7 @@ return redirect()->route('transaksi.index');
      */
     public function edit($id)
     {
-        
+
         $transaksi = Transaksi::findOrFail($id);
         $menu = Menu::findOrFail($id);
         return view('transaksi.edit', compact('transaksi', 'menu'));
@@ -112,10 +122,15 @@ return redirect()->route('transaksi.index');
         $transaksi->menu_id = $request->menu_id;
         $transaksi->jumlah = $request->jumlah;
         $transaksi->uang = $request->uang;
-        
+
         $price = Menu::findOrFail($request->menu_id);
         $transaksi->total = $request->harga * $transaksi->jumlah;
         $transaksi->kembalian = $transaksi->uang - $transaksi->total;
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Data edited successfully",
+        ]);
+        Alert::success('Success Mengedit');
         $transaksi->save();
         return redirect()->route('transaksi.index');
     }
@@ -130,6 +145,7 @@ return redirect()->route('transaksi.index');
     {
         //
         $transaksi = Transaksi::findOrFail($id);
+        Alert::success('Success deleted transaksi');
         $transaksi->delete();
         return redirect()->route('transaksi.index');
     }

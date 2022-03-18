@@ -104,6 +104,9 @@
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
+    @include('sweetalert::alert')
+
+
 </body>
 
 </html>

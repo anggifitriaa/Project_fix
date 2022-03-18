@@ -1,28 +1,32 @@
 @extends('adminlte::page')
-@section('header')
+@section('content_header')
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1 class="m-0">Menu</h1>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0"><center>Daftar Menu Masakan</center></h1>
+                </div>
+               
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('content')
+@include('layouts._flash')
+@include('sweetalert::alert')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     Menu
-                    <a href="{{ route('menu.create') }}" class="btn btn-sm btn-outline-primary float-right">Tambah</a>
+                    <a href="{{ route('menu.create') }}" class="btn btn-sm btn-primary float-right">Tambah</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="menu">
+                            <thead>
                             <tr>
                                 <th>NO</th>
                                 <th>Nama menu</th>
@@ -31,17 +35,16 @@
                                 <th>Action</th>
 
                             </tr>
+                            </thead>
                             @php $no=1; @endphp
                             @foreach ($menu as $data)
+                            <tbody>
                             <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $data->nama_menu }}</td>
-                           <td><img src="{{ asset('images/'.$data->gambar_menu) }}" alt="" style="width:150px; height:150px;" alt="gambar_menu"></td>
-                            <td>Rp. {{number_format($data->harga,2,",",",")}}</td>  
-                              
-
+                           <td><img src="{{ asset('image/'.$data->gambar_menu) }}" alt="" style="width:150px; height:150px;" alt="gambar_menu"></td>
+                            <td>Rp. {{number_format($data->harga,2,",",",")}}</td>
                                 <td>
-
                                 <form action="{{ route('menu.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
@@ -54,6 +57,7 @@
                                             </form>
                                 </td>
                             </tr>
+                            </tbody>
                             @endforeach
                         </table>
                     </div>
@@ -63,4 +67,15 @@
     </div>
 </div>
 @endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css') }}">
+@endsection
 
+@section('js')
+<script src="{{asset('Datatables/datatables.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#menu').DataTable();
+    });
+</script>
+@endsection

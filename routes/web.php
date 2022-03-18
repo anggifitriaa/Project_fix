@@ -68,13 +68,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('buku', function () {
-        return view('buku.index');
-    })->middleware(['role:admin|pengguna']);
-
-    Route::get('pengarang', function () {
-        return view('pengarang.index');
-    })->middleware(['role:admin']);
 
     Route::get('karyawan', function () {
         return view('karyawan.index');
@@ -102,7 +95,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('transaksi', TransaksiController::class)->middleware(['role:admin']);
     Route::resource('bank', BankController::class)->middleware(['role:admin']);
     Route::resource('kategori', KategoriController::class);
-    
+
     Route::get('laporan', [TransaksiController::class, 'laporan']);
 
 

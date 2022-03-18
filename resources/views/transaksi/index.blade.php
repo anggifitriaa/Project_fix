@@ -1,17 +1,19 @@
 @extends('adminlte::page')
-@section('header')
+@section('content_header')
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1 class="m-0">Transaksi</h1>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0"><center>Daftar Transaksi</center></h1>
+                </div>
+               
             </div>
         </div>
     </div>
-</div>
 @endsection
-
 @section('content')
+@include('layouts._flash')
+@include('sweetalert::alert')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -22,7 +24,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="menu">
+                            <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama Pembeli</th>
@@ -34,8 +37,10 @@
                                 <th>Kembalian</th>
                                 <th>Aksi</th>
                             </tr>
+                            </thead>
                             @php $no=1; @endphp
                             @foreach ($transaksi as $data)
+                            <tbody>
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nama }}</td>
@@ -45,8 +50,8 @@
                                 <td>Rp. {{number_format($data->uang,2,",",",")}}</td>
                                 <td>Rp. {{number_format($data->total,2,",",",")}}</td>
                                 <td>Rp. {{number_format($data->kembalian,2,",",",")}}</td>
-                                
-    
+
+
 
                                 <td>
                                     <form action="{{ route('transaksi.destroy', $data->id) }}" method="post">
@@ -58,6 +63,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            </tbody>
                             @endforeach
                         </table>
                     </div>
@@ -66,5 +72,17 @@
         </div>
     </div>
 </div>
+@endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset('DataTables/datatables.min.css') }}">
+@endsection
+
+@section('js')
+<script src="{{asset('Datatables/datatables.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#menu').DataTable();
+    });
+</script>
 @endsection
 

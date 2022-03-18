@@ -78,6 +78,13 @@
         <main class="py-4">
             @yield('content')
         </main>
+        
+         <!-- Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">Anggi Fitria</a>.</strong>
+    All rights reserved. No body said it was easy you must understand!
+  </footer>
+  <!-- /.Footer -->
     </div>
 </body>
 </html>

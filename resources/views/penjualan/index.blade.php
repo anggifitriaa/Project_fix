@@ -1,17 +1,20 @@
 @extends('adminlte::page')
-@section('header')
+@section('content_header')
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1 class="m-0">Penjualan</h1>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0"><center>Daftar Transaksi</center></h1>
+                </div>
+               
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('content')
+@include('layouts._flash')
+@include('sweetalert::alert')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">

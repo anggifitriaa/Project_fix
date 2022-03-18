@@ -10,17 +10,8 @@
                     <form action="{{ route('menu.update', $menu->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <!-- <div class="form-group">
-                            <label for="">Id </label>
-                            <input type="text" name="id" value="{{ $menu->id }}" disabled class="form-control @error('id') is-invalid @enderror">
-                            @error('id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror -->
                         </div>
                         <div class="form-group ml-5 col-10">
-                            
                             <label for="">Nama Menu</label>
                             <input type="text" name="nama_menu" value="{{ $menu->nama_menu }}" disabled class="form-control @error('nama_menu') is-invalid @enderror">
                             @error('nama_menu')
@@ -49,18 +40,9 @@
                         </div>
                         <div class="form-group ml-5">
                             <label>Foto</label><br>
-                            <img src="{{ asset('images/'.$menu->gambar_menu) }}" alt="" style="width:150px; height:150px;" alt="gambar_menu">
+                            <img src="{{ asset('image/'.$menu->gambar_menu) }}" alt="" style="width:150px; height:150px;" alt="gambar_menu">
                         </div>
-                        
-                        <!-- <div class="form-group">
-                            <label for="">Stock</label>
-                            <input type="number" name="stock" value="{{ $menu->stock }}" disabled class="form-control @error('stock') is-invalid @enderror">
-                            @error('stock')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div> -->
+
                     </form>
                 </div>
                 <a class="btn btn-primary" href="{{url('admin/menu')}}" role="button">kembali</a>

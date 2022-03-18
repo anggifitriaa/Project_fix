@@ -46,8 +46,8 @@ return [
      */
 
     'logo' => '<b>Kasir</b>Restoran',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTEL.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img' => 'image/logo.png',
+    'logo_img_class' => 'image/logo.png',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => '',
@@ -238,27 +238,27 @@ return [
 
         // Sidebar items:
 
-        // [
-        //     'text' => 'blog',
-        //     'url' => 'admin/blog',
-        //     'can' => 'manage-blog',
-        // ],
+        [
+            'text' => 'DASHBOARD',
+            'url' => '/',
+            'icon' => 'far fa-solid house',
+        ],
         [
             'text' => 'Karyawan',
             'url' => 'admin/karyawan',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fa-user',
         ],
         [
             'text' => 'Menu',
             // 'url' => 'admin/menu',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fa-folder',
              'submenu' => [
                 [
                     'text' => 'Kategori Masakan',
                     'url' => 'admin/kategori',
                 ],
                 [
-                    'text' => 'Data Masakan',
+                    'text' => 'Data Menu Masakan',
                     'url' => 'admin/menu',
                 ],
             ],
@@ -287,7 +287,7 @@ return [
 
         // ],
 
-    
+
     ],
 
     /*
