@@ -16,6 +16,7 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
+
     <div class="{{ $auth_type ?? 'login' }}-box">
 
         {{-- Logo --}}
@@ -51,7 +52,6 @@
             @endif
 
         </div>
-
     </div>
 @stop
 

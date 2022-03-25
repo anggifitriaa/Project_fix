@@ -244,7 +244,12 @@ return [
             'icon' => 'far fa-solid house',
         ],
         [
-            'text' => 'Karyawan',
+            'text' => 'Profil',
+            'url' => 'admin/profil',
+            'icon' => 'far fa-fw fa-user',
+        ],
+        [
+            'text' => 'Daftar Karyawan',
             'url' => 'admin/karyawan',
             'icon' => 'far fa-fw fa-user',
         ],

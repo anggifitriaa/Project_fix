@@ -40,6 +40,14 @@
                                 <option value="Gurame Goreng">Gurame Goreng</option>
                                 <option value="Pepes Peda">Pepes Peda</option>
                                 <option value="Pepes Tahu">Pepes tahu</option>
+                                <option value="Jus Alpukat">Jus Alpukat</option>
+                                <option value="Jus Nanas">Jus Nanas</option>
+                                <option value="Jus Jeruk">Jus Jeruk</option>
+                                <option value="Jus Mangga">Jus Mangga</option>
+                                <option value="Jus jambu">Jus Jambu</option>
+                                <option value="Teh Pucuk">Teh Pucuk</option>
+                                <option value="Air Mineral">Air Mineral</option>
+                                <option value="Salad Buah">Salad Buah</option>
                                 <select>
 
                         <div class="form-group">

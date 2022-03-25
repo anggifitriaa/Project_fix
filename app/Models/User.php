@@ -19,6 +19,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public function user()
+    {
+        return $this->belongsTo('App\models\user','id');
+    }
     protected $fillable = [
         'name',
         'email',

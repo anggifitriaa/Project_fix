@@ -72,6 +72,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('karyawan', function () {
         return view('karyawan.index');
     })->middleware(['role:admin']);
+    
+    Route::get('profil', function () {
+        return view('profil.index');
+    })->middleware(['role:admin']);
 
     Route::get('menu', function () {
         return view('menu.index');
